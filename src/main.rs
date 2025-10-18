@@ -8,8 +8,7 @@ fn prompt(question: &str) -> String {
 }
 
 fn exercise1() {
-    let name = prompt("What is your name?");
-    println!("Hello, {name}, nice to meet you!");
+    println!("Hello, {}, nice to meet you!", prompt("What is your name?"));
 }
 
 fn exercise2() {
@@ -33,8 +32,16 @@ fn exercise4() {
 }
 
 fn main() {
-    //exercise1();
-    //exercise2();
-    //exercise3();
-    exercise4();
+    let exercise = prompt("Which exercise do you want to run?")
+        .parse::<u8>()
+        .expect("Please enter an integer");
+    match exercise {
+        0 => (),
+        1 => exercise1(),
+        2 => exercise2(),
+        3 => exercise3(),
+        4 => exercise4(),
+        5..=60 => todo!(),
+        _ => panic!("Exercise doesn't exist"),
+    };
 }
