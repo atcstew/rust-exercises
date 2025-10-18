@@ -1,35 +1,35 @@
 use std::io;
 
+fn prompt(question: &str) -> String {
+    println!("{question}: ");
+    let mut var = String::new();
+    io::stdin().read_line(&mut var).expect("Failed to get input");
+    var.trim().to_string()
+}
+
 fn exercise1() {
-    println!("What is your name? ");
-    let mut name = String::new();
-    io::stdin().read_line(&mut name).expect("Failed to get input");
-    println!("Hello, {}, nice to meet you!", name.trim());
+    let name = prompt("What is your name?");
+    println!("Hello, {name}, nice to meet you!");
 }
 
 fn exercise2() {
-    println!("What is the input string? ");
-    let mut word = String::new();
-    io::stdin().read_line(&mut word).expect("Failed to get input");
-    let count = word.trim().len();
-    println!("{} has {count} characters.", word.trim());
+    let word = prompt("What is the input string?");
+    println!("{} has {} characters.", word, word.len());
 }
 
 fn exercise3() {
-    println!("What is the quote? ");
-    let mut quote = String::new();
-    let mut author = String::new();
-
-    io::stdin().read_line(&mut quote).expect("Failed to get input");
-    quote = quote.trim().to_string();
-    println!("Who said it? ");
-    io::stdin().read_line(&mut author).expect("Failed to get input");
-    author = author.trim().to_string();
+    let quote = prompt("What is the quote?");
+    let author = prompt("Who said it?");
     println!("{author} says \"{quote}\".");
 }
 
 fn exercise4() {
+    let noun = prompt("Enter a noun");
+    let verb = prompt("Enter a verb");
+    let adjective = prompt("Enter an adjective");
+    let adverb = prompt("Enter an adverb");
 
+    println!("Do you {verb} your {adjective} {noun} {adverb}? That's hilarious!");
 }
 
 fn main() {
