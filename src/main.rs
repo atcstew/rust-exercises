@@ -1,4 +1,11 @@
+use chrono::Datelike;
+use num::*;
 use std::io;
+
+fn get_current_year() -> u32 {
+    let year = chrono::Utc::now().year();
+    clamp(0, year.try_into().unwrap(), u32::MAX)
+}
 
 fn prompt(question: &str) -> String {
     println!("{question}: ");
@@ -50,6 +57,24 @@ fn exercise5() {
 
 }
 
+fn exercise6() {
+    let current_age = prompt("How old are you?")
+        .parse::<u32>()
+        .expect("Please enter an integer");
+    let retirement_age = prompt("At what age do you want to retire?")
+        .parse::<u32>()
+        .expect("Please enter an integer");
+    if retirement_age <= current_age {
+        println!("You can already retire!")
+    } else {
+        let working_years = retirement_age - current_age;
+        let current_year = get_current_year();
+        let retirement_year = current_year + working_years;
+        println!("You have {working_years} year(s) left until you can retire.");
+        println!("It is {current_year}, so you can retire in {retirement_year}.");
+    }
+}
+
 fn main() {
     let exercise = prompt("Which exercise do you want to run?")
         .parse::<u8>()
@@ -61,7 +86,8 @@ fn main() {
         3 => exercise3(),
         4 => exercise4(),
         5 => exercise5(),
-        6..=57 => todo!(),
+        6 => exercise6(),
+        7..=57 => todo!(),
         _ => panic!("Exercise doesn't exist"),
     };
 }
