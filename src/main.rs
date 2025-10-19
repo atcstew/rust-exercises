@@ -31,6 +31,25 @@ fn exercise4() {
     println!("Do you {verb} your {adjective} {noun} {adverb}? That's hilarious!");
 }
 
+fn exercise5() {
+    let first = prompt("Enter the first number")
+        .parse::<i32>()
+        .expect("Please enter an integer");
+    let second = prompt("Enter the second number")
+        .parse::<i32>()
+        .expect("Please enter an integer");
+    let sum = first + second;
+    let difference = first - second;
+    let product = first * second;
+    let quotient = first / second;
+
+    println!("{first} + {second} = {sum}");
+    println!("{first} - {second} = {difference}");
+    println!("{first} * {second} = {product}");
+    println!("{first} / {second} = {quotient}");
+
+}
+
 fn main() {
     let exercise = prompt("Which exercise do you want to run?")
         .parse::<u8>()
@@ -41,7 +60,8 @@ fn main() {
         2 => exercise2(),
         3 => exercise3(),
         4 => exercise4(),
-        5..=60 => todo!(),
+        5 => exercise5(),
+        6..=57 => todo!(),
         _ => panic!("Exercise doesn't exist"),
     };
 }
